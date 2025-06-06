@@ -1,0 +1,65 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Container Diagram - Будущее 2.0 Data Platform (Target Architecture)
+
+Person(employee, "Сотрудник", "Пользователь системы")
+Person(doctor, "Врач", "Медицинский персонал")
+Person(analyst, "Аналитик", "Бизнес-аналитик")
+
+System_Boundary(c1, "Data Platform") {
+    Container(portal, "Data Portal", "React/Angular", "Витрина данных, самообслуживание")
+    Container(api_gateway, "API Gateway", "Kong/AWS API Gateway", "Единая точка входа, авторизация")
+    Container(metadata, "Data Catalog", "Apache Atlas/DataHub", "Каталог данных и метаданные")
+
+    Container(dwh_new, "Modern DWH", "Snowflake/BigQuery", "Облачное хранилище данных")
+    Container(data_lake, "Data Lake", "S3/Azure Data Lake", "Сырые данные всех форматов")
+    Container(olap, "OLAP Engine", "ClickHouse/Druid", "Быстрая аналитика")
+
+    Container(etl_orchestrator, "Data Orchestrator", "Apache Airflow", "Управление пайплайнами")
+    Container(streaming, "Stream Processing", "Apache Kafka + Kafka Streams", "Обработка в реальном времени")
+    Container(data_quality, "Data Quality", "Great Expectations", "Контроль качества данных")
+}
+
+System_Boundary(legacy, "Legacy Systems") {
+    Container(dwh_old, "Legacy DWH", "MS SQL Server 2008", "Существующее хранилище")
+    Container(powerbuilder, "PowerBuilder App", "PowerBuilder", "Клиентское приложение")
+}
+
+System_Boundary(business_systems, "Business Systems") {
+    Container(fintech, "Fintech Services", "Golang/Java", "Финансовые сервисы")
+    Container(ai_services, "AI Services", "Python", "ИИ для медицины")
+    Container(clinic_systems, "Clinic Systems", "Various", "Системы клиник")
+    Container(pharma_systems, "Pharma Systems", "Various", "Фармацевтические системы")
+}
+
+Container(integration_layer, "Integration Layer", "Apache NiFi/Kafka Connect", "Слой интеграций")
+
+Rel(employee, portal, "Использует")
+Rel(doctor, portal, "Получает отчеты")
+Rel(analyst, portal, "Строит аналитику")
+
+Rel(portal, api_gateway, "API calls")
+Rel(api_gateway, olap, "Запросы данных")
+Rel(api_gateway, metadata, "Метаданные")
+
+Rel(etl_orchestrator, dwh_new, "Загружает данные")
+Rel(etl_orchestrator, data_lake, "Обрабатывает")
+Rel(data_lake, dwh_new, "ETL процессы")
+Rel(dwh_new, olap, "Агрегированные данные")
+
+Rel(integration_layer, streaming, "События")
+Rel(streaming, data_lake, "Потоковые данные")
+Rel(data_quality, dwh_new, "Валидация")
+
+Rel(fintech, integration_layer, "Данные транзакций")
+Rel(ai_services, integration_layer, "Результаты анализа")
+Rel(clinic_systems, integration_layer, "Операционные данные")
+Rel(pharma_systems, integration_layer, "Данные поставок")
+
+Rel(dwh_old, integration_layer, "Миграция данных")
+Rel(powerbuilder, dwh_old, "Прямой доступ")
+
+@enduml
