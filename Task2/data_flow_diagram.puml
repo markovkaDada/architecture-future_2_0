@@ -1,0 +1,198 @@
+@startuml
+!define RECTANGLE class
+
+title Data Flow Diagram - Будущее 2.0 (Domain-Based Architecture)
+
+package "Source Systems" {
+    RECTANGLE ClinicSystems {
+        Clinic Systems
+        --
+        Appointments
+        Treatments
+        Equipment Usage
+    }
+    RECTANGLE FintechSystems {
+        Fintech Systems
+        --
+        Transactions
+        Loans
+        Payments
+    }
+    RECTANGLE AISystems {
+        AI Services
+        --
+        Diagnosis Results
+        Treatment Recommendations
+    }
+
+    RECTANGLE PharmaSystems {
+        Pharma Systems
+        --
+        Drug Inventory
+        Supply Orders
+    }
+
+    RECTANGLE HRSystems {
+        HR Systems
+        --
+        Employee Data
+        Schedules
+    }
+
+    RECTANGLE LegacyDWH {
+        Legacy DWH
+        --
+        Historical Data
+        Customer Base
+    }
+}
+
+package "Domain Data Stores" {
+    RECTANGLE CustomerDomain {
+        Customer Domain
+        --
+        Customer Data Lake
+        Customer DWH
+        --
+        • Profiles
+        • Segments
+        • Preferences
+        • Contact History
+    }
+
+    RECTANGLE MedicalDomain {
+        Medical Domain
+        --
+        Medical Data Lake
+        Medical DWH
+        --
+        • Appointments
+        • Treatments
+        • AI Insights
+        • Equipment Usage
+    }
+
+    RECTANGLE FinancialDomain {
+        Financial Domain
+        --
+        Financial Data Lake
+        Financial DWH
+        --
+        • Transactions
+        • Accounts
+        • Credit History
+        • Financial Products
+    }
+
+    RECTANGLE SupplyChainDomain {
+        Supply Chain Domain
+        --
+        Supply Data Lake
+        Supply DWH
+        --
+        • Inventory
+        • Orders
+        • Suppliers
+        • Equipment
+    }
+
+    RECTANGLE HRDomain {
+        HR Domain
+        --
+        HR Data Lake
+        HR DWH
+        --
+        • Employees
+        • Schedules
+        • Payroll
+        • Training
+    }
+}
+
+package "Integration Layer" {
+    RECTANGLE EventBus {
+        Event Bus
+        --
+        Apache Kafka
+        --
+        Domain Events
+        Change Data Capture
+    }
+
+    RECTANGLE DataMesh {
+        Data Mesh Platform
+        --
+        • Schema Registry
+        • Data Contracts
+        • Quality Gates
+        • Lineage Tracking
+    }
+}
+
+package "Analytics Layer" {
+    RECTANGLE AnalyticsDomain {
+        Analytics Domain
+        --
+        Unified Data Lake
+        OLAP Engine
+        --
+        • Cross-domain KPIs
+        • Business Metrics
+        • Regulatory Reports
+    }
+
+    RECTANGLE DataPortal {
+        Data Portal
+        --
+        Self-Service BI
+        --
+        • Dashboards
+        • Report Builder
+        • Data Catalog
+    }
+}
+
+' Source to Domain flows
+ClinicSystems --> MedicalDomain : Medical Events
+ClinicSystems --> CustomerDomain : Customer Updates
+FintechSystems --> FinancialDomain : Financial Events
+FintechSystems --> CustomerDomain : Customer Financial Data
+AISystems --> MedicalDomain : AI Insights
+PharmaSystems --> SupplyChainDomain : Supply Events
+HRSystems --> HRDomain : HR Events
+LegacyDWH --> CustomerDomain : Historical Customer Data
+LegacyDWH --> FinancialDomain : Historical Financial Data
+
+' Domain to Event Bus
+CustomerDomain --> EventBus : Customer Events
+MedicalDomain --> EventBus : Medical Events
+FinancialDomain --> EventBus : Financial Events
+SupplyChainDomain --> EventBus : Supply Events
+HRDomain --> EventBus : HR Events
+
+' Event Bus to Analytics
+EventBus --> AnalyticsDomain : Aggregated Events
+EventBus --> DataMesh : Event Metadata
+
+' Cross-domain data sharing
+CustomerDomain <--> FinancialDomain : Customer-Financial Link
+CustomerDomain <--> MedicalDomain : Customer-Medical Link
+MedicalDomain <--> SupplyChainDomain : Treatment-Supply Link
+HRDomain <--> MedicalDomain : Staff-Treatment Link
+
+' Analytics consumption
+AnalyticsDomain --> DataPortal : Analytical Data
+CustomerDomain --> DataPortal : Customer Reports
+FinancialDomain --> DataPortal : Financial Reports
+MedicalDomain --> DataPortal : Medical Reports
+SupplyChainDomain --> DataPortal : Supply Reports
+HRDomain --> DataPortal : HR Reports
+
+' Data Mesh governance
+DataMesh --> CustomerDomain : Data Contracts
+DataMesh --> MedicalDomain : Data Contracts
+DataMesh --> FinancialDomain : Data Contracts
+DataMesh --> SupplyChainDomain : Data Contracts
+DataMesh --> HRDomain : Data Contracts
+
+@enduml
