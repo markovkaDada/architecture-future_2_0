@@ -1,0 +1,128 @@
+@startuml
+!theme plain
+
+title Technology Radar - Будущее 2.0
+
+legend right
+|= Статус |= Описание |
+| ADOPT | Рекомендуется к использованию |
+| TRIAL | Пилотные проекты |
+| ASSESS | Изучение и оценка |
+| HOLD | Не рекомендуется |
+endlegend
+
+package "PLATFORMS" {
+    rectangle "ADOPT" #lightgreen {
+        [Cloud Data Platforms]
+        [Kubernetes]
+        [Apache Kafka]
+        [Docker]
+    }
+
+    rectangle "TRIAL" #yellow {
+        [Data Mesh Platform]
+        [Snowflake/BigQuery]
+        [Apache Airflow]
+    }
+
+    rectangle "ASSESS" #lightblue {
+        [Databricks]
+        [dbt Cloud]
+        [Confluent Platform]
+    }
+
+    rectangle "HOLD" #lightcoral {
+        [MS SQL Server 2008]
+        [PowerBuilder]
+        [Apache Camel]
+    }
+}
+
+package "TOOLS" {
+    rectangle "ADOPT" #lightgreen {
+        [Terraform]
+        [Git/GitLab]
+        [Monitoring Stack]
+        [API Gateway]
+    }
+
+    rectangle "TRIAL" #yellow {
+        [Great Expectations]
+        [Apache Atlas/DataHub]
+        [ClickHouse]
+        [Grafana]
+    }
+
+    rectangle "ASSESS" #lightblue {
+        [Apache Superset]
+        [Airbyte]
+        [Monte Carlo]
+        [Prefect]
+    }
+
+    rectangle "HOLD" #lightcoral {
+        [Legacy ETL Tools]
+        [Direct DB Access]
+        [Manual Deployments]
+    }
+}
+
+package "TECHNIQUES" {
+    rectangle "ADOPT" #lightgreen {
+        [Domain-Driven Design]
+        [Event-Driven Architecture]
+        [Infrastructure as Code]
+        [CI/CD]
+    }
+
+    rectangle "TRIAL" #yellow {
+        [Data Contracts]
+        [Data Product Thinking]
+        [Stream Processing]
+        [Self-Service Analytics]
+    }
+
+    rectangle "ASSESS" #lightblue {
+        [Data Lineage Automation]
+        [ML Ops]
+        [Real-time Analytics]
+        [Federated Governance]
+    }
+
+    rectangle "HOLD" #lightcoral {
+        [Monolithic DWH]
+        [Manual Data Quality]
+        [Direct Database Integration]
+    }
+}
+
+package "LANGUAGES & FRAMEWORKS" {
+    rectangle "ADOPT" #lightgreen {
+        [Python]
+        [SQL]
+        [JavaScript/TypeScript]
+        [KOTLIN]
+    }
+
+    rectangle "TRIAL" #yellow {
+        [Scala (Spark)]
+        [React/Vue.js]
+        [FastAPI]
+        [Apache Spark]
+    }
+
+    rectangle "ASSESS" #lightblue {
+        [Rust]
+        [Julia]
+        [Apache Flink]
+        [GraphQL]
+    }
+
+    rectangle "HOLD" #lightcoral {
+        [PowerBuilder]
+        [Legacy .NET Framework]
+        [Stored Procedures for Business Logic]
+    }
+}
+
+@enduml

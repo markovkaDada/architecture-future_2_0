@@ -1,0 +1,76 @@
+@startgantt
+!theme plain
+
+title Роадмап трансформации данных - Будущее 2.0
+printscale daily zoom 2
+scale 1.5
+
+Project starts 2025-01-01
+
+-- Фаза 1: Фундамент --
+[Настройка Cloud Infrastructure] as [INFRA] starts 2025-01-01 and ends 2025-03-31
+[INFRA] is colored in Green
+[INFRA] links to [[https://example.com Infrastructure Setup]]
+
+[Развертывание Kafka Event Bus] as [KAFKA] starts 2025-02-01 and ends 2025-04-30
+[KAFKA] is colored in Blue
+
+[Миграция Customer Domain] as [CUSTOMER] starts 2025-03-01 and ends 2025-06-30
+[CUSTOMER] is colored in Orange
+
+[Внедрение Data Governance] as [GOVERNANCE] starts 2025-04-01 and ends 2025-07-31
+[GOVERNANCE] is colored in Purple
+
+-- Фаза 2: Домены --
+[Развертывание Financial Domain] as [FINANCIAL] starts 2025-05-01 and ends 2025-08-31
+[FINANCIAL] is colored in Red
+
+[Развертывание Medical Domain] as [MEDICAL] starts 2025-06-01 and ends 2025-09-30
+[MEDICAL] is colored in LightBlue
+
+[Интеграция AI Services] as [AI] starts 2025-07-01 and ends 2025-10-31
+[AI] is colored in Yellow
+
+[Создание Supply Chain Domain] as [SUPPLY] starts 2025-08-01 and ends 2025-11-30
+[SUPPLY] is colored in Brown
+
+-- Фаза 3: Аналитика --
+[Развертывание OLAP Engine] as [OLAP] starts 2025-09-01 and ends 2025-12-31
+[OLAP] is colored in Cyan
+
+[Создание Data Portal] as [PORTAL] starts 2025-10-01 and ends 2025-01-31
+[PORTAL] is colored in Magenta
+
+[Внедрение Self-Service BI] as [SELFSERVICE] starts 2025-11-01 and ends 2025-02-28
+[SELFSERVICE] is colored in Lime
+
+[Миграция Power BI Reports] as [POWERBI] starts 2025-12-01 and ends 2025-03-31
+[POWERBI] is colored in Pink
+
+-- Фаза 4: Оптимизация --
+[Внедрение Real-time Analytics] as [REALTIME] starts 2025-01-01 and ends 2025-04-30
+[REALTIME] is colored in Navy
+
+[Автоматизация Data Quality] as [QUALITY] starts 2025-02-01 and ends 2025-05-31
+[QUALITY] is colored in Olive
+
+[Полная миграция с Legacy DWH] as [LEGACY] starts 2025-03-01 and ends 2025-06-30
+[LEGACY] is colored in Maroon
+
+[Оптимизация производительности] as [PERF] starts 2025-04-01 and ends 2025-07-31
+[PERF] is colored in Teal
+
+-- Фаза 5: Масштабирование --
+[Интеграция Pharma Companies] as [PHARMA] starts 2025-05-01 and ends 2025-08-31
+[PHARMA] is colored in Silver
+
+[Интеграция Equipment Vendors] as [EQUIPMENT] starts 2025-06-01 and ends 2025-09-30
+[EQUIPMENT] is colored in Gold
+
+[Advanced Analytics & ML] as [ML] starts 2025-07-01 and ends 2025-10-31
+[ML] is colored in Violet
+
+[Platform Maturity & Governance] as [MATURITY] starts 2025-08-01 and ends 2025-12-31
+[MATURITY] is colored in DarkGreen
+
+@endgantt
